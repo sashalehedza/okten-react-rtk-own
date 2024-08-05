@@ -21,6 +21,11 @@ const HeaderComponent = () => {
             Posts
           </NavLink>
         </li>
+        <li>
+          <NavLink to={'/comments'} className={styles.navItem}>
+            Comments
+          </NavLink>
+        </li>
       </ul>
       <hr className={styles.hr} />
     </div>

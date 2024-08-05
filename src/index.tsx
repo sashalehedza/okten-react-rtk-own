@@ -11,12 +11,13 @@ import MainLayout from './layouts/MainLayout'
 import HomePage from './pages/HomePage'
 import UserPage from './pages/user/UserPage'
 import PostPage from './pages/post/PostPage'
+import CommentsPage from './pages/comment/CommentsPage'
 
 let router = createBrowserRouter([
   {
     path: '/',
     element: <MainLayout />,
-    errorElement: <h1>aaaaaaaa errorrr!</h1>,
+    errorElement: <h1>Error!</h1>,
     children: [
       {
         index: true,
@@ -29,6 +30,10 @@ let router = createBrowserRouter([
       {
         path: '/posts',
         element: <PostPage />,
+      },
+      {
+        path: '/comments',
+        element: <CommentsPage />,
       },
     ],
   },
