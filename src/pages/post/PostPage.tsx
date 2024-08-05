@@ -1,16 +1,11 @@
 import React, { useEffect } from 'react'
-
 import { useAppDispatch, useAppSelector } from '../../redux/store'
-
 import { postActions } from '../../redux/slices/postSlice'
-
 import styles from './PostPage.module.css'
 
 const PostPage = () => {
-  const {
-    postSlice: { posts, isLoaded: isPostLoaded },
-  } = useAppSelector((state) => state)
-
+  const posts = useAppSelector((state) => state.postSlice.posts)
+  const isPostLoaded = useAppSelector((state) => state.postSlice.isLoaded)
   const dispatch = useAppDispatch()
 
   useEffect(() => {

@@ -4,10 +4,8 @@ import { userActions } from '../../redux/slices/userSlice'
 import styles from './UserPage.module.css'
 
 const UserPage = () => {
-  const {
-    userSlice: { users, isLoaded: isUserLoaded },
-  } = useAppSelector((state) => state)
-
+  const users = useAppSelector((state) => state.userSlice.users)
+  const isUserLoaded = useAppSelector((state) => state.userSlice.isLoaded)
   const dispatch = useAppDispatch()
 
   useEffect(() => {
