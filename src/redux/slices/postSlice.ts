@@ -1,34 +1,45 @@
-import { createSlice, isFulfilled } from '@reduxjs/toolkit'
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import { IPost } from '../../models/IPost'
-import { loadPosts } from '../reducers/users/post.extra.reducers'
+import { postService } from '../../services/api.service'
+import { AxiosError } from 'axios'
 
 type PostSliceType = {
   posts: IPost[]
   isLoaded: boolean
 }
 
-const userInitState: PostSliceType = {
+const initialState: PostSliceType = {
   posts: [],
   isLoaded: false,
 }
 
-export const postSlice = createSlice({
-  name: 'postsSlice',
-  initialState: userInitState,
+export const loadPosts = createAsyncThunk(
+  'post/loadPosts',
+  async (_, thunkAPI) => {
+    try {
+      const response = await postService.getAll()
+      return response
+    } catch (e) {
+      const error = e as AxiosError
+      return thunkAPI.rejectWithValue(error)
+    }
+  }
+)
+
+const postSlice = createSlice({
+  name: 'post',
+  initialState,
   reducers: {},
-  extraReducers: (builder) =>
+  extraReducers: (builder) => {
     builder
       .addCase(loadPosts.fulfilled, (state, action) => {
         state.posts = action.payload
         state.isLoaded = true
       })
-      .addCase(loadPosts.rejected, (state, action) => {})
-      .addMatcher(isFulfilled(loadPosts), (state, action) => {
-        // state.isLoaded = true;
-      }),
+      .addCase(loadPosts.rejected, (state) => {
+        state.isLoaded = true
+      })
+  },
 })
 
-export const postActions = {
-  ...postSlice.actions,
-  loadPosts,
-}
+export default postSlice

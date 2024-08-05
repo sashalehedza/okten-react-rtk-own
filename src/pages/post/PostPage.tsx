@@ -1,15 +1,15 @@
 import React, { useEffect } from 'react'
 import { useAppDispatch, useAppSelector } from '../../redux/store'
-import { postActions } from '../../redux/slices/postSlice'
+import { loadPosts } from '../../redux/slices/postSlice'
 import styles from './PostPage.module.css'
 
 const PostPage = () => {
-  const posts = useAppSelector((state) => state.postSlice.posts)
-  const isPostLoaded = useAppSelector((state) => state.postSlice.isLoaded)
+  const posts = useAppSelector((state) => state.post.posts)
+  const isPostLoaded = useAppSelector((state) => state.post.isLoaded)
   const dispatch = useAppDispatch()
 
   useEffect(() => {
-    dispatch(postActions.loadPosts())
+    dispatch(loadPosts())
   }, [dispatch])
 
   return (

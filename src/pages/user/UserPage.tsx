@@ -1,15 +1,15 @@
 import React, { useEffect } from 'react'
 import { useAppDispatch, useAppSelector } from '../../redux/store'
-import { userActions } from '../../redux/slices/userSlice'
+import { loadUsers } from '../../redux/slices/userSlice'
 import styles from './UserPage.module.css'
 
 const UserPage = () => {
-  const users = useAppSelector((state) => state.userSlice.users)
-  const isUserLoaded = useAppSelector((state) => state.userSlice.isLoaded)
+  const users = useAppSelector((state) => state.user.users)
+  const isUserLoaded = useAppSelector((state) => state.user.isLoaded)
   const dispatch = useAppDispatch()
 
   useEffect(() => {
-    dispatch(userActions.loadUsers())
+    dispatch(loadUsers())
   }, [dispatch])
 
   return (
