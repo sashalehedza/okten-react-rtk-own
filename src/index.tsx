@@ -12,6 +12,7 @@ import HomePage from './pages/HomePage'
 import UserPage from './pages/user/UserPage'
 import PostPage from './pages/post/PostPage'
 import CommentsPage from './pages/comment/CommentsPage'
+import UserDetailsPage from './pages/user/UserDetailsPage'
 
 let router = createBrowserRouter([
   {
@@ -26,6 +27,10 @@ let router = createBrowserRouter([
       {
         path: '/users',
         element: <UserPage />,
+      },
+      {
+        path: '/users/:userId/posts',
+        element: <UserDetailsPage />,
       },
       {
         path: '/posts',
