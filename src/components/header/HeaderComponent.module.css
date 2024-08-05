@@ -1,3 +1,36 @@
 .xxx {
   background: silver;
 }
+.header {
+  background-color: #282c34;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: white;
+}
+
+.nav {
+  list-style-type: none;
+  display: flex;
+  gap: 20px;
+  margin: 0;
+  padding: 0;
+}
+
+.navItem {
+  text-decoration: none;
+  color: white;
+  font-size: 18px;
+  transition: color 0.3s;
+}
+
+.navItem:hover {
+  color: #61dafb;
+}
+
+.hr {
+  margin-top: 10px;
+  border: 0;
+  border-top: 1px solid #61dafb;
+}

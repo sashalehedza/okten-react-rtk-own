@@ -9,8 +9,8 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import MainLayout from './layouts/MainLayout'
 
 import HomePage from './pages/HomePage'
-import UserPage from './pages/UserPage'
-import PostPage from './pages/PostPage'
+import UserPage from './pages/user/UserPage'
+import PostPage from './pages/post/PostPage'
 
 let router = createBrowserRouter([
   {

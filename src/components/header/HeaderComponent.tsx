@@ -4,20 +4,25 @@ import styles from './HeaderComponent.module.css'
 
 const HeaderComponent = () => {
   return (
-    <div className={styles.xxx}>
-      <ul>
+    <div className={styles.header}>
+      <ul className={styles.nav}>
         <li>
-          <NavLink to={'/'}>home</NavLink>
+          <NavLink to={'/'} className={styles.navItem}>
+            Home
+          </NavLink>
         </li>
         <li>
-          <NavLink to={'/users'}>users</NavLink>
+          <NavLink to={'/users'} className={styles.navItem}>
+            Users
+          </NavLink>
         </li>
         <li>
-          <NavLink to={'/posts'}>posts</NavLink>
+          <NavLink to={'/posts'} className={styles.navItem}>
+            Posts
+          </NavLink>
         </li>
       </ul>
-
-      <hr />
+      <hr className={styles.hr} />
     </div>
   )
 }
