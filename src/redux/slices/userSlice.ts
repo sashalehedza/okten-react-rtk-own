@@ -1,7 +1,6 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
+import { createSlice } from '@reduxjs/toolkit'
 import { IUser } from '../../models/IUser'
-import { userService } from '../../services/api.service'
-import { AxiosError } from 'axios'
+import { loadUsers } from '../reducers/users/user.extra.reducers'
 
 type UserSliceType = {
   users: IUser[]
@@ -12,19 +11,6 @@ const initialState: UserSliceType = {
   users: [],
   isLoaded: false,
 }
-
-export const loadUsers = createAsyncThunk(
-  'user/loadUsers',
-  async (_, thunkAPI) => {
-    try {
-      const response = await userService.getAll()
-      return response
-    } catch (e) {
-      const error = e as AxiosError
-      return thunkAPI.rejectWithValue(error)
-    }
-  }
-)
 
 const userSlice = createSlice({
   name: 'user',
