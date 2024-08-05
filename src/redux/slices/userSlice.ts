@@ -1,4 +1,4 @@
-import { createSlice, isFulfilled } from '@reduxjs/toolkit'
+import { createSlice } from '@reduxjs/toolkit'
 import { IUser } from '../../models/IUser'
 import { loadUsers } from '../reducers/users/user.extra.reducers'
 
@@ -26,10 +26,7 @@ export const userSlice = createSlice({
         state.users = action.payload
         state.isLoaded = true
       })
-      .addCase(loadUsers.rejected, (state, action) => {})
-      .addMatcher(isFulfilled(loadUsers), (state, action) => {
-        // state.isLoaded = true;
-      }),
+      .addCase(loadUsers.rejected, (state, action) => {}),
 })
 
 export const userActions = {
