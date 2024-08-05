@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useAppDispatch, useAppSelector } from '../../redux/store'
 import { postActions } from '../../redux/slices/postSlice'
-import { loadCommentsByPostId } from '../../redux/slices/commentSlice'
+import { commentActions } from '../../redux/slices/commentSlice'
 import styles from './PostPage.module.css'
 
 const PostPage = () => {
@@ -18,7 +18,7 @@ const PostPage = () => {
 
   useEffect(() => {
     if (selectedPostId !== null) {
-      dispatch(loadCommentsByPostId(selectedPostId))
+      dispatch(commentActions.loadCommentsByPostId(selectedPostId))
     }
   }, [selectedPostId, dispatch])
 
