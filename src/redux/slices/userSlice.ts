@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice, isFulfilled } from '@reduxjs/toolkit'
 import { IUser } from '../../models/IUser'
 import { loadUsers } from '../reducers/users/user.extra.reducers'
 
@@ -7,25 +7,32 @@ type UserSliceType = {
   isLoaded: boolean
 }
 
-const initialState: UserSliceType = {
+const userInitState: UserSliceType = {
   users: [],
   isLoaded: false,
 }
 
-const userSlice = createSlice({
-  name: 'user',
-  initialState,
-  reducers: {},
-  extraReducers: (builder) => {
+export const userSlice = createSlice({
+  name: 'usersSlice',
+  initialState: userInitState,
+  reducers: {
+    xxx: (state) => {
+      state.isLoaded = true
+    },
+  },
+  extraReducers: (builder) =>
     builder
       .addCase(loadUsers.fulfilled, (state, action) => {
         state.users = action.payload
         state.isLoaded = true
       })
-      .addCase(loadUsers.rejected, (state) => {
-        state.isLoaded = true
-      })
-  },
+      .addCase(loadUsers.rejected, (state, action) => {})
+      .addMatcher(isFulfilled(loadUsers), (state, action) => {
+        // state.isLoaded = true;
+      }),
 })
 
-export default userSlice
+export const userActions = {
+  ...userSlice.actions,
+  loadUsers,
+}
