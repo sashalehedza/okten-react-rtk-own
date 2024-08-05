@@ -4,8 +4,8 @@ import { postActions } from '../../redux/slices/postSlice'
 import styles from './PostPage.module.css'
 
 const PostPage = () => {
-  const posts = useAppSelector((state) => state.postSlice.posts)
-  const isPostLoaded = useAppSelector((state) => state.postSlice.isLoaded)
+  const { posts, isLoaded } = useAppSelector((state) => state.postSlice)
+
   const dispatch = useAppDispatch()
 
   useEffect(() => {
@@ -14,7 +14,7 @@ const PostPage = () => {
 
   return (
     <div className={styles.container}>
-      {!isPostLoaded ? (
+      {!isLoaded ? (
         <div className={styles.loading}>Loading in process....</div>
       ) : (
         posts.map((post) => (

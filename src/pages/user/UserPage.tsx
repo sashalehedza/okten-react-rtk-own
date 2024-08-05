@@ -4,8 +4,7 @@ import { userActions } from '../../redux/slices/userSlice'
 import styles from './UserPage.module.css'
 
 const UserPage = () => {
-  const users = useAppSelector((state) => state.userSlice.users)
-  const isUserLoaded = useAppSelector((state) => state.userSlice.isLoaded)
+  const { users, isLoaded } = useAppSelector((state) => state.userSlice)
   const dispatch = useAppDispatch()
 
   useEffect(() => {
@@ -14,7 +13,7 @@ const UserPage = () => {
 
   return (
     <div className={styles.container}>
-      {!isUserLoaded ? (
+      {!isLoaded ? (
         <div className={styles.loading}>Loading in process....</div>
       ) : (
         users.map((user) => (
