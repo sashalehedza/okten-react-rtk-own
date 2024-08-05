@@ -15,11 +15,7 @@ const userInitState: UserSliceType = {
 export const userSlice = createSlice({
   name: 'usersSlice',
   initialState: userInitState,
-  reducers: {
-    xxx: (state) => {
-      state.isLoaded = true
-    },
-  },
+  reducers: {},
   extraReducers: (builder) =>
     builder
       .addCase(loadUsers.fulfilled, (state, action) => {
