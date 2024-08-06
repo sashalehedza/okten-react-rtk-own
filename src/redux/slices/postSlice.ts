@@ -26,6 +26,9 @@ export const postSlice = createSlice({
         state.isLoaded = true
       })
       .addCase(loadPosts.rejected, (state, action) => {})
+      .addCase(loadPostsByUserId.pending, (state) => {
+        state.isLoaded = false
+      })
       .addCase(loadPostsByUserId.fulfilled, (state, action) => {
         state.posts = action.payload
         state.isLoaded = true
