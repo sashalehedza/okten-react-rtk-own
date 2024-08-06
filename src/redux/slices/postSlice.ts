@@ -1,6 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { IPost } from '../../models/IPost'
-import { loadPosts } from '../reducers/users/post.extra.reducers'
+import {
+  loadPosts,
+  loadPostsByUserId,
+} from '../reducers/users/post.extra.reducers'
 
 type PostSliceType = {
   posts: IPost[]
@@ -22,10 +25,16 @@ export const postSlice = createSlice({
         state.posts = action.payload
         state.isLoaded = true
       })
-      .addCase(loadPosts.rejected, (state, action) => {}),
+      .addCase(loadPosts.rejected, (state, action) => {})
+      .addCase(loadPostsByUserId.fulfilled, (state, action) => {
+        state.posts = action.payload
+        state.isLoaded = true
+      })
+      .addCase(loadPostsByUserId.rejected, (state, action) => {}),
 })
 
 export const postActions = {
   ...postSlice.actions,
   loadPosts,
+  loadPostsByUserId,
 }

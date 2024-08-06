@@ -21,6 +21,12 @@ export const postService = {
     let response = await axiosInstance.get<IPost[]>(urls.posts.base)
     return response.data
   },
+  getByUserId: async (userId: number) => {
+    let response = await axiosInstance.get<IPost[]>(
+      `${urls.posts.byUserId(userId)}`
+    )
+    return response.data
+  },
 }
 
 export const commentService = {
@@ -30,7 +36,7 @@ export const commentService = {
   },
   getByPostId: async (postId: number) => {
     let response = await axiosInstance.get<IComment[]>(
-      `${urls.comments.base}?postId=${postId}`
+      `${urls.comments.byPostId(postId)}`
     )
     return response.data
   },

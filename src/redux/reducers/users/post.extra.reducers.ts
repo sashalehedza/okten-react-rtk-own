@@ -15,3 +15,16 @@ export const loadPosts = createAsyncThunk(
     }
   }
 )
+
+export const loadPostsByUserId = createAsyncThunk(
+  'postSlice/loadPostsByUserId',
+  async (userId: number, thunkAPI) => {
+    try {
+      let response = await postService.getByUserId(userId)
+      return thunkAPI.fulfillWithValue(response)
+    } catch (e) {
+      let e1 = e as AxiosError
+      return thunkAPI.rejectWithValue(e1)
+    }
+  }
+)

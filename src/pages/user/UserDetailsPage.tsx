@@ -11,7 +11,7 @@ const UserDetailsPage = () => {
 
   useEffect(() => {
     if (userId) {
-      dispatch(postActions.loadPosts())
+      dispatch(postActions.loadPostsByUserId(Number(userId)))
     }
   }, [userId, dispatch])
 
@@ -20,14 +20,12 @@ const UserDetailsPage = () => {
       {!isLoaded ? (
         <div className={styles.loading}>Loading posts...</div>
       ) : (
-        posts
-          .filter((post) => post.userId === parseInt(userId!))
-          .map((post) => (
-            <div key={post.id} className={styles.post}>
-              <h3 className={styles.postTitle}>{post.title}</h3>
-              <p className={styles.postBody}>{post.body}</p>
-            </div>
-          ))
+        posts.map((post) => (
+          <div key={post.id} className={styles.post}>
+            <h3 className={styles.postTitle}>{post.title}</h3>
+            <p className={styles.postBody}>{post.body}</p>
+          </div>
+        ))
       )}
     </div>
   )
